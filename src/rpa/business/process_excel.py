@@ -21,7 +21,7 @@ def open_file_excel():
     else:
         list_dict.pop(0)
         try:
-            desktop.click(f"image:{os.path.join(dir_name, 'image_recognition')}/D&D_Cartera.png")
+            desktop.click(f"image:{os.path.join(dir_name, 'image_recognition')}/D&D_Cart.png")
         except Exception as e:
             print(str(e))
             try:

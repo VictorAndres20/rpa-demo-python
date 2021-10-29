@@ -1,6 +1,6 @@
 # Tests for rpa framework by
 # https://rpaframework.org/
-import time
+import os
 from RPA.Desktop import Desktop
 from RPA.Excel.Files import Files
 
@@ -8,6 +8,7 @@ from RPA.Excel.Files import Files
 def open_file_excel():
     desktop = Desktop()
     lib = Files()
+    dir_name = os.path.dirname(__file__)
     path = '/home/viti/RPA-ingerman/rpa-solutions/labs/Jak/cartera.xlsx'
     list_dict = []
     lib.open_workbook(path)
@@ -20,18 +21,18 @@ def open_file_excel():
     else:
         list_dict.pop(0)
         try:
-            desktop.click(f"image:/home/viti/Pictures/D&D_Cartera.png")
+            desktop.click(f"image:{os.path.join(dir_name, 'image_recognition')}/D&D_Cartera.png")
         except Exception as e:
             print(str(e))
             try:
-                desktop.click(f"image:/home/viti/Pictures/D&D_Cartera2.png")
+                desktop.click(f"image:{os.path.join(dir_name, 'image_recognition')}/D&D_Cartera2.png")
             except Exception as e:
                 print(str(e))
                 print('no se encontro la aplicacion')
         for i in list_dict:
             print(i)
             if (i['I'] == 'x' or i['I'] == 'X') and (i['H'] == '' or i['H'] is None):
-                desktop.move_mouse("image:/home/viti/Pictures/ColumnB.png")
+                desktop.move_mouse(f"image:{os.path.join(dir_name, 'image_recognition')}/ColumnB.png")
                 desktop.move_mouse("offset:0,17")
                 desktop.click()
                 desktop.type_text(i['E'])
